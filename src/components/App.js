@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
 import { Statistics } from './Statistics/Statistics';
 
 export class App extends Component {
@@ -16,19 +17,17 @@ export class App extends Component {
 
   countTotalFeedback = () => {
     const { good, neutral, bad } = this.state;
+    return good + neutral + bad;
   };
 
   render() {
     return (
       <div>
         <h2>Please leave feedbeck</h2>
-        <div>
-          <button type="button" onClick={() => onBtnClick(option)}>
-            Good
-          </button>
-          <button type="button">Neutral</button>
-          <button type="button">Bad</button>
-        </div>
+        <FeedbackOptions
+          options={Object.keys(this.state)}
+          onBtnClick={this.onBtnClick}
+        />
         <h2>Statistics</h2>
         <Statistics />
       </div>
