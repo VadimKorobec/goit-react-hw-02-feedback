@@ -1,10 +1,21 @@
 import { Component } from 'react';
+import { Statistics } from './Statistics/Statistics';
 
 export class App extends Component {
   state = {
     good: 0,
     neutral: 0,
     bad: 0,
+  };
+
+  onBtnClick = feedback => {
+    this.setState(prevState => ({
+      [feedback]: prevState[feedback] + 1,
+    }));
+  };
+
+  countTotalFeedback = () => {
+    const { good, neutral, bad } = this.state;
   };
 
   render() {
@@ -17,6 +28,7 @@ export class App extends Component {
           <button type="button">Bad</button>
         </div>
         <h2>Statistics</h2>
+        <Statistics />
       </div>
     );
   }
